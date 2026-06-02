@@ -353,11 +353,11 @@ class Authentication:
         st.sidebar.markdown("""
         <div style='text-align:center; padding: 1rem 0 0.5rem;'>
             <div style='font-size:2.2rem;'>🔗</div>
-            <div style='font-size:1.4rem; font-weight:800; background:linear-gradient(135deg,#00b894,#00cec9); 
+            <div style='font-size:1.4rem; font-weight:800; background:linear-gradient(135deg,#00695c,#00838f); 
                         -webkit-background-clip:text; -webkit-text-fill-color:transparent; letter-spacing:2px;'>
                 AFYALINK
             </div>
-            <div style='font-size:0.65rem; color:#b2bec3; letter-spacing:3px; text-transform:uppercase;'>
+            <div style='font-size:0.65rem; color:#78909c; letter-spacing:3px; text-transform:uppercase;'>
                 National Referral Network
             </div>
         </div>
@@ -389,11 +389,11 @@ class Authentication:
             u = st.session_state.user
             role_icons = {'Admin': '⚙️', 'Hospital Staff': '🏥', 'Ambulance Driver': '🚑', 'Investor': '💼'}
             st.sidebar.markdown(f"""
-            <div style='background:linear-gradient(135deg,#00b89420,#0984e320);border:1px solid #00b89440;
-                        border-radius:12px;padding:1rem;margin-bottom:1rem;'>
-                <div style='font-size:1.1rem;font-weight:700;color:#dfe6e9;'>{role_icons.get(u['role'],'👤')} {u['name']}</div>
-                <div style='font-size:0.75rem;color:#00b894;font-weight:600;'>{u['role']}</div>
-                <div style='font-size:0.7rem;color:#b2bec3;margin-top:4px;'>{u['hospital'][:35]}...</div>
+            <div style='background:linear-gradient(135deg,#e0f2f120,#e8eaf620);
+                        border:1px solid #00695c40;border-radius:12px;padding:1rem;margin-bottom:1rem;'>
+                <div style='font-size:1.1rem;font-weight:700;color:#1a237e;'>{role_icons.get(u['role'],'👤')} {u['name']}</div>
+                <div style='font-size:0.75rem;color:#00695c;font-weight:600;'>{u['role']}</div>
+                <div style='font-size:0.7rem;color:#78909c;margin-top:4px;'>{u['hospital'][:35]}...</div>
             </div>
             """, unsafe_allow_html=True)
             if st.sidebar.button("Sign Out", use_container_width=True):
@@ -432,13 +432,14 @@ class PresentationEnhancer:
             to { opacity: 1; transform: translateX(0); }
         }
         .hero-container {
-            background: linear-gradient(135deg, #0a0f1e 0%, #0d1f14 50%, #0a0f1e 100%);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eaf6 50%, #f5f7fa 100%);
             border-radius: 24px;
             padding: 3rem 2rem;
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
             animation: fadeInUp 0.6s ease-out;
+            border: 1px solid #00695c20;
         }
         .hero-container::before {
             content: '';
@@ -447,25 +448,27 @@ class PresentationEnhancer:
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(0,184,148,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0,105,92,0.08) 0%, transparent 70%);
             animation: pulse 4s ease-in-out infinite;
         }
         .stat-card {
-            background: rgba(15,23,42,0.8);
+            background: rgba(255,255,255,0.95);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(0,184,148,0.3);
+            border: 1px solid rgba(0,105,92,0.2);
             border-radius: 16px;
             padding: 1.2rem;
             text-align: center;
             transition: transform 0.3s ease;
             animation: slideIn 0.5s ease-out;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         .stat-card:hover {
             transform: translateY(-5px);
-            border-color: #00b894;
+            border-color: #00695c;
+            box-shadow: 0 4px 16px rgba(0,105,92,0.15);
         }
         .gradient-text {
-            background: linear-gradient(135deg, #00b894, #00cec9, #0984e3);
+            background: linear-gradient(135deg, #00695c, #00838f, #0277bd);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -474,11 +477,11 @@ class PresentationEnhancer:
         """, unsafe_allow_html=True)
         
     @staticmethod
-    def animated_counter(value, label, color="#00b894"):
+    def animated_counter(value, label, color="#00695c"):
         return f"""
         <div class='stat-card'>
             <div style='font-size:2.5rem;font-weight:800;color:{color};'>{value}</div>
-            <div style='font-size:0.8rem;color:#94a3b8;font-weight:600;letter-spacing:1px;'>{label}</div>
+            <div style='font-size:0.8rem;color:#546e7a;font-weight:600;letter-spacing:1px;'>{label}</div>
         </div>
         """
     
@@ -529,13 +532,13 @@ class InvestorPresentationUI:
         # Executive Summary
         st.markdown("""
         <div style='text-align:center; margin-bottom: 2rem;'>
-            <div style='font-size:0.7rem;letter-spacing:4px;color:#00b894;font-weight:700;text-transform:uppercase;margin-bottom:1rem;'>
+            <div style='font-size:0.7rem;letter-spacing:4px;color:#00695c;font-weight:700;text-transform:uppercase;margin-bottom:1rem;'>
                 Executive Summary
             </div>
             <h1 style='font-size:2.5rem;font-weight:800;margin:0;'>
                 <span class='gradient-text'>AfyaLink</span>
             </h1>
-            <p style='font-size:1.1rem;color:#94a3b8;max-width:800px;margin:1rem auto;'>
+            <p style='font-size:1.1rem;color:#546e7a;max-width:800px;margin:1rem auto;'>
                 Kenya's first unified, real-time patient referral and ambulance coordination platform
             </p>
         </div>
@@ -546,13 +549,13 @@ class InvestorPresentationUI:
         
         col1, col2, col3, col4 = st.columns(4)
         with col1:
-            st.markdown(self.enhancer.animated_counter(f"{impact['transfers_completed']:,}", "PATIENT TRANSFERS", "#00b894"), unsafe_allow_html=True)
+            st.markdown(self.enhancer.animated_counter(f"{impact['transfers_completed']:,}", "PATIENT TRANSFERS", "#00695c"), unsafe_allow_html=True)
         with col2:
-            st.markdown(self.enhancer.animated_counter(f"{impact['lives_impacted']:,}", "LIVES IMPACTED", "#0984e3"), unsafe_allow_html=True)
+            st.markdown(self.enhancer.animated_counter(f"{impact['lives_impacted']:,}", "LIVES IMPACTED", "#0277bd"), unsafe_allow_html=True)
         with col3:
-            st.markdown(self.enhancer.animated_counter(f"KSh {impact['cost_savings_ksh']:,.0f}", "COST SAVINGS", "#fdcb6e"), unsafe_allow_html=True)
+            st.markdown(self.enhancer.animated_counter(f"KSh {impact['cost_savings_ksh']:,.0f}", "COST SAVINGS", "#f57c00"), unsafe_allow_html=True)
         with col4:
-            st.markdown(self.enhancer.animated_counter(f"{impact['response_improvement']:.0f}%", "FASTER RESPONSE", "#e17055"), unsafe_allow_html=True)
+            st.markdown(self.enhancer.animated_counter(f"{impact['response_improvement']:.0f}%", "FASTER RESPONSE", "#d32f2f"), unsafe_allow_html=True)
         
         st.markdown("---")
         
@@ -560,10 +563,10 @@ class InvestorPresentationUI:
         col1, col2 = st.columns(2)
         with col1:
             st.markdown("""
-            <div style='background:linear-gradient(135deg,#1a0a0a,#2d1a1a);border-radius:16px;padding:1.5rem;height:100%;'>
+            <div style='background:linear-gradient(135deg,#ffebee,#ffcdd2);border-radius:16px;padding:1.5rem;height:100%;border:1px solid #ef9a9a;'>
                 <div style='font-size:2rem;margin-bottom:0.5rem;'>⚠️</div>
-                <h3 style='color:#e17055;margin:0 0 1rem 0;'>The Problem</h3>
-                <ul style='color:#94a3b8;line-height:1.8;'>
+                <h3 style='color:#c62828;margin:0 0 1rem 0;'>The Problem</h3>
+                <ul style='color:#37474f;line-height:1.8;'>
                     <li><strong>45+ minutes</strong> average ambulance response time in Kenya</li>
                     <li><strong>Poor coordination</strong> between referring and receiving facilities</li>
                     <li><strong>No real-time tracking</strong> of patient transfers</li>
@@ -575,10 +578,10 @@ class InvestorPresentationUI:
         
         with col2:
             st.markdown("""
-            <div style='background:linear-gradient(135deg,#0a1a0a,#1a2d1a);border-radius:16px;padding:1.5rem;height:100%;'>
+            <div style='background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-radius:16px;padding:1.5rem;height:100%;border:1px solid #a5d6a7;'>
                 <div style='font-size:2rem;margin-bottom:0.5rem;'>💡</div>
-                <h3 style='color:#00b894;margin:0 0 1rem 0;'>Our Solution</h3>
-                <ul style='color:#94a3b8;line-height:1.8;'>
+                <h3 style='color:#2e7d32;margin:0 0 1rem 0;'>Our Solution</h3>
+                <ul style='color:#37474f;line-height:1.8;'>
                     <li><strong>Real-time GPS tracking</strong> of all ambulance units</li>
                     <li><strong>AI-powered dispatch</strong> for nearest available ambulance</li>
                     <li><strong>Integrated communication hub</strong> between all stakeholders</li>
@@ -593,7 +596,7 @@ class InvestorPresentationUI:
         # Key Features Grid
         st.markdown("""
         <div style='text-align:center;margin:2rem 0;'>
-            <div style='font-size:0.7rem;letter-spacing:4px;color:#00b894;font-weight:700;text-transform:uppercase;'>
+            <div style='font-size:0.7rem;letter-spacing:4px;color:#00695c;font-weight:700;text-transform:uppercase;'>
                 Platform Capabilities
             </div>
             <h2 style='font-size:1.8rem;font-weight:800;'>Enterprise-Grade Features</h2>
@@ -601,12 +604,12 @@ class InvestorPresentationUI:
         """, unsafe_allow_html=True)
         
         features = [
-            ("📡", "Real-time Tracking", "Live GPS tracking with 10-second update intervals", "#00b894"),
-            ("🤖", "AI Dispatch", "Nearest ambulance assignment with fuel optimization", "#0984e3"),
-            ("💰", "Cost Intelligence", "Fuel analytics and operational cost tracking", "#fdcb6e"),
-            ("📊", "Analytics Dashboard", "KPI monitoring and performance metrics", "#a29bfe"),
-            ("🔒", "HIPAA-Aligned", "Role-based access and audit trail", "#e17055"),
-            ("🏥", "EHR Integration", "HL7 FHIR-ready for national health systems", "#00cec9"),
+            ("📡", "Real-time Tracking", "Live GPS tracking with 10-second update intervals", "#00695c"),
+            ("🤖", "AI Dispatch", "Nearest ambulance assignment with fuel optimization", "#0277bd"),
+            ("💰", "Cost Intelligence", "Fuel analytics and operational cost tracking", "#f57c00"),
+            ("📊", "Analytics Dashboard", "KPI monitoring and performance metrics", "#5e35b1"),
+            ("🔒", "HIPAA-Aligned", "Role-based access and audit trail", "#d32f2f"),
+            ("🏥", "EHR Integration", "HL7 FHIR-ready for national health systems", "#00838f"),
         ]
         
         for i in range(0, len(features), 3):
@@ -615,11 +618,11 @@ class InvestorPresentationUI:
                 if i + j < len(features):
                     icon, title, desc, color = features[i + j]
                     col.markdown(f"""
-                    <div style='background:rgba(30,41,59,0.6);border:1px solid {color}40;border-radius:12px;
-                                padding:1.2rem;margin:0.5rem 0;transition:all 0.3s ease;'>
+                    <div style='background:rgba(255,255,255,0.9);border:1px solid {color}40;border-radius:12px;
+                                padding:1.2rem;margin:0.5rem 0;transition:all 0.3s ease;box-shadow:0 2px 4px rgba(0,0,0,0.05);'>
                         <div style='font-size:2rem;margin-bottom:0.5rem;'>{icon}</div>
-                        <div style='font-weight:700;color:#e2e8f0;margin-bottom:0.5rem;'>{title}</div>
-                        <div style='font-size:0.8rem;color:#94a3b8;'>{desc}</div>
+                        <div style='font-weight:700;color:#1a237e;margin-bottom:0.5rem;'>{title}</div>
+                        <div style='font-size:0.8rem;color:#546e7a;'>{desc}</div>
                     </div>
                     """, unsafe_allow_html=True)
         
@@ -628,7 +631,7 @@ class InvestorPresentationUI:
         # Market Opportunity
         st.markdown("""
         <div style='text-align:center;margin:2rem 0;'>
-            <div style='font-size:0.7rem;letter-spacing:4px;color:#00b894;font-weight:700;text-transform:uppercase;'>
+            <div style='font-size:0.7rem;letter-spacing:4px;color:#00695c;font-weight:700;text-transform:uppercase;'>
                 Market Opportunity
             </div>
             <h2 style='font-size:1.8rem;font-weight:800;'>Kenya's Healthcare Landscape</h2>
@@ -648,9 +651,9 @@ class InvestorPresentationUI:
         col1, col2 = st.columns(2)
         with col1:
             st.markdown("""
-            <div style='background:#1e293b;border-radius:16px;padding:1.5rem;'>
-                <h4 style='color:#00b894;'>📈 TAM Analysis</h4>
-                <ul style='color:#94a3b8;'>
+            <div style='background:#ffffff;border-radius:16px;padding:1.5rem;border:1px solid #e0e0e0;'>
+                <h4 style='color:#00695c;'>📈 TAM Analysis</h4>
+                <ul style='color:#37474f;'>
                     <li><strong>Total Addressable Market:</strong> KSh 2.5B/year</li>
                     <li><strong>Serviceable Addressable Market:</strong> KSh 850M/year</li>
                     <li><strong>Serviceable Obtainable Market:</strong> KSh 250M/year (Year 3)</li>
@@ -660,9 +663,9 @@ class InvestorPresentationUI:
         
         with col2:
             st.markdown("""
-            <div style='background:#1e293b;border-radius:16px;padding:1.5rem;'>
-                <h4 style='color:#00b894;'>🎯 Target Customers</h4>
-                <ul style='color:#94a3b8;'>
+            <div style='background:#ffffff;border-radius:16px;padding:1.5rem;border:1px solid #e0e0e0;'>
+                <h4 style='color:#00695c;'>🎯 Target Customers</h4>
+                <ul style='color:#37474f;'>
                     <li>Ministry of Health (National rollout)</li>
                     <li>47 County Governments</li>
                     <li>Referral and Teaching Hospitals</li>
@@ -677,7 +680,7 @@ class InvestorPresentationUI:
         # Pilot Success Metrics
         st.markdown("""
         <div style='text-align:center;margin:2rem 0;'>
-            <div style='font-size:0.7rem;letter-spacing:4px;color:#00b894;font-weight:700;text-transform:uppercase;'>
+            <div style='font-size:0.7rem;letter-spacing:4px;color:#00695c;font-weight:700;text-transform:uppercase;'>
                 Pilot Success
             </div>
             <h2 style='font-size:1.8rem;font-weight:800;'>Kisumu County Results</h2>
@@ -690,25 +693,25 @@ class InvestorPresentationUI:
         with col1:
             st.markdown(f"""
             <div style='text-align:center;'>
-                <div style='font-size:2rem;font-weight:800;color:#00b894;'>{kpis.get('total_referrals', 156)}</div>
-                <div style='color:#94a3b8;'>Referrals Processed</div>
-                <div style='font-size:0.7rem;color:#00b894;'>↑ 23% MoM</div>
+                <div style='font-size:2rem;font-weight:800;color:#00695c;'>{kpis.get('total_referrals', 156)}</div>
+                <div style='color:#546e7a;'>Referrals Processed</div>
+                <div style='font-size:0.7rem;color:#00695c;'>↑ 23% MoM</div>
             </div>
             """, unsafe_allow_html=True)
         with col2:
             st.markdown(f"""
             <div style='text-align:center;'>
-                <div style='font-size:2rem;font-weight:800;color:#0984e3;'>40</div>
-                <div style='color:#94a3b8;'>Facilities Connected</div>
-                <div style='font-size:0.7rem;color:#0984e3;'>100% Coverage</div>
+                <div style='font-size:2rem;font-weight:800;color:#0277bd;'>40</div>
+                <div style='color:#546e7a;'>Facilities Connected</div>
+                <div style='font-size:0.7rem;color:#0277bd;'>100% Coverage</div>
             </div>
             """, unsafe_allow_html=True)
         with col3:
             st.markdown(f"""
             <div style='text-align:center;'>
-                <div style='font-size:2rem;font-weight:800;color:#fdcb6e;'>18.4</div>
-                <div style='color:#94a3b8;'>Avg Response (min)</div>
-                <div style='font-size:0.7rem;color:#fdcb6e;'>↓ 59% from baseline</div>
+                <div style='font-size:2rem;font-weight:800;color:#f57c00;'>18.4</div>
+                <div style='color:#546e7a;'>Avg Response (min)</div>
+                <div style='font-size:0.7rem;color:#f57c00;'>↓ 59% from baseline</div>
             </div>
             """, unsafe_allow_html=True)
         
@@ -720,18 +723,18 @@ class InvestorPresentationUI:
         fig.add_trace(go.Scatter(
             x=months, y=referrals,
             mode='lines+markers',
-            line=dict(color='#00b894', width=3),
-            marker=dict(size=10, color='#00cec9', symbol='diamond'),
+            line=dict(color='#00695c', width=3),
+            marker=dict(size=10, color='#00838f', symbol='diamond'),
             fill='tozeroy',
-            fillcolor='rgba(0,184,148,0.1)'
+            fillcolor='rgba(0,105,92,0.1)'
         ))
         fig.update_layout(
             title="Monthly Referral Growth — Kisumu Pilot",
-            plot_bgcolor='rgba(0,0,0,0)',
-            paper_bgcolor='rgba(0,0,0,0)',
-            font=dict(color='#cbd5e1'),
-            xaxis=dict(gridcolor='rgba(255,255,255,0.05)'),
-            yaxis=dict(gridcolor='rgba(255,255,255,0.05)')
+            plot_bgcolor='rgba(245,247,250,0.8)',
+            paper_bgcolor='rgba(245,247,250,0.8)',
+            font=dict(color='#1a237e'),
+            xaxis=dict(gridcolor='rgba(0,0,0,0.05)'),
+            yaxis=dict(gridcolor='rgba(0,0,0,0.05)')
         )
         st.plotly_chart(fig, use_container_width=True, key="growth_chart")
         
@@ -740,7 +743,7 @@ class InvestorPresentationUI:
         # Roadmap
         st.markdown("""
         <div style='text-align:center;margin:2rem 0;'>
-            <div style='font-size:0.7rem;letter-spacing:4px;color:#00b894;font-weight:700;text-transform:uppercase;'>
+            <div style='font-size:0.7rem;letter-spacing:4px;color:#00695c;font-weight:700;text-transform:uppercase;'>
                 Strategic Roadmap
             </div>
             <h2 style='font-size:1.8rem;font-weight:800;'>Scaling Across Kenya</h2>
@@ -748,23 +751,23 @@ class InvestorPresentationUI:
         """, unsafe_allow_html=True)
         
         roadmap = [
-            ("Phase 1 ✅", "2024-2025", "Kisumu County", "40 facilities, 20 ambulances, proven model", "#00b894"),
-            ("Phase 2 🔜", "2025-2026", "Lake Region (7 counties)", "Inter-county coordination, expanded fleet", "#0984e3"),
-            ("Phase 3 📋", "2026-2027", "Nationwide (47 counties)", "Full MoH integration, telemedicine", "#a29bfe"),
+            ("Phase 1 ✅", "2024-2025", "Kisumu County", "40 facilities, 20 ambulances, proven model", "#00695c"),
+            ("Phase 2 🔜", "2025-2026", "Lake Region (7 counties)", "Inter-county coordination, expanded fleet", "#0277bd"),
+            ("Phase 3 📋", "2026-2027", "Nationwide (47 counties)", "Full MoH integration, telemedicine", "#5e35b1"),
         ]
         
         for phase, period, scope, detail, color in roadmap:
             st.markdown(f"""
-            <div style='background:linear-gradient(135deg,#1e293b,#0f172a);border-left:4px solid {color};
-                        border-radius:12px;padding:1rem 1.5rem;margin:0.8rem 0;'>
+            <div style='background:linear-gradient(135deg,#ffffff,#f5f5f5);border-left:4px solid {color};
+                        border-radius:12px;padding:1rem 1.5rem;margin:0.8rem 0;box-shadow:0 1px 3px rgba(0,0,0,0.05);'>
                 <div style='display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;'>
                     <div>
                         <span style='font-weight:800;color:{color};'>{phase}</span>
-                        <span style='color:#e2e8f0;margin-left:1rem;'>{scope}</span>
+                        <span style='color:#1a237e;margin-left:1rem;'>{scope}</span>
                     </div>
-                    <span style='color:#64748b;font-size:0.85rem;'>{period}</span>
+                    <span style='color:#78909c;font-size:0.85rem;'>{period}</span>
                 </div>
-                <div style='color:#94a3b8;font-size:0.9rem;margin-top:0.5rem;'>{detail}</div>
+                <div style='color:#37474f;font-size:0.9rem;margin-top:0.5rem;'>{detail}</div>
             </div>
             """, unsafe_allow_html=True)
         
@@ -772,30 +775,30 @@ class InvestorPresentationUI:
         
         # Investment Opportunity
         st.markdown("""
-        <div style='background:linear-gradient(135deg,#0a1f1a,#0a1a2e);border-radius:20px;padding:2rem;margin:2rem 0;
-                    border:1px solid rgba(0,184,148,0.3);'>
+        <div style='background:linear-gradient(135deg,#e8f5e9,#e0f2f1);border-radius:20px;padding:2rem;margin:2rem 0;
+                    border:1px solid rgba(0,105,92,0.3);'>
             <div style='text-align:center;'>
-                <div style='font-size:0.7rem;letter-spacing:4px;color:#00b894;font-weight:700;text-transform:uppercase;'>
+                <div style='font-size:0.7rem;letter-spacing:4px;color:#00695c;font-weight:700;text-transform:uppercase;'>
                     Investment Opportunity
                 </div>
                 <h2 style='font-size:2rem;font-weight:800;margin:0.5rem 0;'>Join Us in Transforming Healthcare</h2>
-                <p style='color:#94a3b8;max-width:600px;margin:1rem auto;'>
+                <p style='color:#37474f;max-width:600px;margin:1rem auto;'>
                     AfyaLink is seeking strategic partners to accelerate national rollout and save lives across Kenya.
                 </p>
             </div>
             
             <div style='display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem;'>
                 <div style='text-align:center;'>
-                    <div style='font-size:2rem;font-weight:800;color:#00b894;'>$500K</div>
-                    <div style='color:#94a3b8;font-size:0.85rem;'>Seed Round</div>
+                    <div style='font-size:2rem;font-weight:800;color:#00695c;'>$500K</div>
+                    <div style='color:#546e7a;font-size:0.85rem;'>Seed Round</div>
                 </div>
                 <div style='text-align:center;'>
-                    <div style='font-size:2rem;font-weight:800;color:#00b894;'>15%</div>
-                    <div style='color:#94a3b8;font-size:0.85rem;'>Equity Offered</div>
+                    <div style='font-size:2rem;font-weight:800;color:#00695c;'>15%</div>
+                    <div style='color:#546e7a;font-size:0.85rem;'>Equity Offered</div>
                 </div>
                 <div style='text-align:center;'>
-                    <div style='font-size:2rem;font-weight:800;color:#00b894;'>3x</div>
-                    <div style='color:#94a3b8;font-size:0.85rem;'>Projected 3-Year ROI</div>
+                    <div style='font-size:2rem;font-weight:800;color:#00695c;'>3x</div>
+                    <div style='color:#546e7a;font-size:0.85rem;'>Projected 3-Year ROI</div>
                 </div>
             </div>
         </div>
@@ -1298,10 +1301,10 @@ def initialize_sample_data(db):
 # ─────────────────────────────────────────────────────────────────────────────
 # PLOTLY THEME HELPER
 # ─────────────────────────────────────────────────────────────────────────────
-PLOT_BG   = 'rgba(15,23,42,0)'
-PAPER_BG  = 'rgba(15,23,42,0)'
-FONT_CLR  = '#cbd5e1'
-GRID_CLR  = 'rgba(148,163,184,0.1)'
+PLOT_BG   = 'rgba(245,247,250,0.8)'
+PAPER_BG  = 'rgba(245,247,250,0.8)'
+FONT_CLR  = '#1a237e'
+GRID_CLR  = 'rgba(0,0,0,0.05)'
 
 def apply_theme(fig, title=None):
     fig.update_layout(
@@ -1311,17 +1314,17 @@ def apply_theme(fig, title=None):
         font=dict(color=FONT_CLR, family='DM Sans, sans-serif'),
         xaxis=dict(gridcolor=GRID_CLR, linecolor=GRID_CLR),
         yaxis=dict(gridcolor=GRID_CLR, linecolor=GRID_CLR),
-        legend=dict(bgcolor='rgba(0,0,0,0)'),
+        legend=dict(bgcolor='rgba(255,255,255,0.8)'),
         margin=dict(l=10,r=10,t=40,b=10)
     )
     return fig
 
-TEAL    = '#00cec9'
-GREEN   = '#00b894'
-BLUE    = '#0984e3'
-AMBER   = '#fdcb6e'
-RED     = '#e17055'
-PURPLE  = '#a29bfe'
+TEAL    = '#00838f'
+GREEN   = '#00695c'
+BLUE    = '#0277bd'
+AMBER   = '#f57c00'
+RED     = '#d32f2f'
+PURPLE  = '#5e35b1'
 PALETTE = [TEAL, GREEN, BLUE, AMBER, RED, PURPLE]
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1335,10 +1338,10 @@ class DashboardUI:
     def display(self):
         st.markdown("""
         <div style='margin-bottom:2rem;'>
-            <h1 style='font-size:1.8rem;font-weight:800;color:#e2e8f0;margin:0;'>
+            <h1 style='font-size:1.8rem;font-weight:800;color:#1a237e;margin:0;'>
                 📊 Command Centre
             </h1>
-            <p style='color:#64748b;margin:4px 0 0;font-size:0.9rem;'>
+            <p style='color:#546e7a;margin:4px 0 0;font-size:0.9rem;'>
                 Real-time overview — Kisumu County Pilot | AfyaLink National Network
             </p>
         </div>
@@ -1347,44 +1350,44 @@ class DashboardUI:
         kpis = self.analytics.get_kpis()
 
         st.markdown(f"""
-        <div style='background:linear-gradient(135deg,#0f4c35,#064e5e);
-                    border:1px solid #00b89450;border-radius:14px;
+        <div style='background:linear-gradient(135deg,#e8f5e9,#e0f2f1);
+                    border:1px solid #00695c50;border-radius:14px;
                     padding:1rem 1.5rem;margin-bottom:1.5rem;
                     display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;'>
             <div>
-                <div style='font-size:0.7rem;letter-spacing:3px;color:#00b894;font-weight:700;text-transform:uppercase;'>
+                <div style='font-size:0.7rem;letter-spacing:3px;color:#00695c;font-weight:700;text-transform:uppercase;'>
                     🔗 AfyaLink National Rollout Status
                 </div>
-                <div style='font-size:1.1rem;color:#e2e8f0;font-weight:600;margin-top:4px;'>
+                <div style='font-size:1.1rem;color:#1a237e;font-weight:600;margin-top:4px;'>
                     Pilot Phase Active — Kisumu County &nbsp;|&nbsp; 46 Counties Queued for Onboarding
                 </div>
             </div>
             <div style='display:flex;gap:2rem;'>
                 <div style='text-align:center;'>
-                    <div style='font-size:1.6rem;font-weight:800;color:#00b894;'>1</div>
-                    <div style='font-size:0.65rem;color:#94a3b8;'>LIVE COUNTY</div>
+                    <div style='font-size:1.6rem;font-weight:800;color:#00695c;'>1</div>
+                    <div style='font-size:0.65rem;color:#546e7a;'>LIVE COUNTY</div>
                 </div>
                 <div style='text-align:center;'>
-                    <div style='font-size:1.6rem;font-weight:800;color:#fdcb6e;'>46</div>
-                    <div style='font-size:0.65rem;color:#94a3b8;'>QUEUED</div>
+                    <div style='font-size:1.6rem;font-weight:800;color:#f57c00;'>46</div>
+                    <div style='font-size:0.65rem;color:#546e7a;'>QUEUED</div>
                 </div>
                 <div style='text-align:center;'>
-                    <div style='font-size:1.6rem;font-weight:800;color:#a29bfe;'>47</div>
-                    <div style='font-size:0.65rem;color:#94a3b8;'>TOTAL</div>
+                    <div style='font-size:1.6rem;font-weight:800;color:#5e35b1;'>47</div>
+                    <div style='font-size:0.65rem;color:#546e7a;'>TOTAL</div>
                 </div>
             </div>
         </div>
         """, unsafe_allow_html=True)
 
-        def kpi_card(icon, label, value, sub=None, color="#00b894"):
-            sub_html = f"<div style='font-size:0.7rem;color:#64748b;margin-top:2px;'>{sub}</div>" if sub else ""
+        def kpi_card(icon, label, value, sub=None, color="#00695c"):
+            sub_html = f"<div style='font-size:0.7rem;color:#78909c;margin-top:2px;'>{sub}</div>" if sub else ""
             return f"""
-            <div style='background:linear-gradient(135deg,#0f172a,#1e293b);
+            <div style='background:linear-gradient(135deg,#ffffff,#fafafa);
                         border:1px solid {color}30;border-radius:14px;padding:1.2rem;
-                        border-left:3px solid {color};'>
+                        border-left:3px solid {color};box-shadow:0 2px 4px rgba(0,0,0,0.05);'>
                 <div style='font-size:1.4rem;margin-bottom:4px;'>{icon}</div>
-                <div style='font-size:1.6rem;font-weight:800;color:#e2e8f0;line-height:1.1;'>{value}</div>
-                <div style='font-size:0.75rem;color:#94a3b8;margin-top:4px;font-weight:600;'>{label}</div>
+                <div style='font-size:1.6rem;font-weight:800;color:#1a237e;line-height:1.1;'>{value}</div>
+                <div style='font-size:0.75rem;color:#546e7a;margin-top:4px;font-weight:600;'>{label}</div>
                 {sub_html}
             </div>"""
 
@@ -1426,7 +1429,7 @@ class DashboardUI:
             fig = go.Figure()
             fig.add_trace(go.Scatter(
                 x=trends['date'], y=trends['count'],
-                fill='tozeroy', fillcolor='rgba(0,184,148,0.15)',
+                fill='tozeroy', fillcolor='rgba(0,105,92,0.15)',
                 line=dict(color=GREEN, width=2.5),
                 mode='lines+markers', marker=dict(size=5, color=GREEN)
             ))
@@ -1438,7 +1441,7 @@ class DashboardUI:
             fig = go.Figure()
             fig.add_trace(go.Scatter(
                 x=dates, y=counts,
-                fill='tozeroy', fillcolor='rgba(0,184,148,0.15)',
+                fill='tozeroy', fillcolor='rgba(0,105,92,0.15)',
                 line=dict(color=GREEN, width=2.5),
                 mode='lines+markers', marker=dict(size=5, color=GREEN)
             ))
@@ -1464,7 +1467,7 @@ class DashboardUI:
                 hovertemplate='%{label}: %{value}<extra></extra>'
             ))
             fig.add_annotation(text=f"<b>{len(patients)}</b><br><span style='font-size:10px'>total</span>",
-                               x=0.5, y=0.5, font_size=20, showarrow=False, font_color='#e2e8f0')
+                               x=0.5, y=0.5, font_size=20, showarrow=False, font_color='#1a237e')
             apply_theme(fig)
             st.plotly_chart(fig, use_container_width=True, key="status_donut")
         else:
@@ -1500,10 +1503,10 @@ class DashboardUI:
             zoom=9, height=320
         )
         fig.update_layout(
-            mapbox_style='carto-darkmatter',
+            mapbox_style='light',
             margin=dict(l=0,r=0,t=0,b=0),
-            paper_bgcolor='rgba(0,0,0,0)',
-            legend=dict(font_color='#cbd5e1', bgcolor='rgba(0,0,0,0)')
+            paper_bgcolor='rgba(255,255,255,0)',
+            legend=dict(font_color='#1a237e', bgcolor='rgba(255,255,255,0.8)')
         )
         st.plotly_chart(fig, use_container_width=True, key="facility_map")
 
@@ -1511,43 +1514,43 @@ class DashboardUI:
         patients = sorted(self.db.get_all_patients(), key=lambda x: x.referral_time, reverse=True)[:8]
         if patients:
             status_badge = {
-                'Referred': ('🔵','rgba(9,132,227,0.2)','#0984e3'),
-                'Ambulance Assigned': ('🟡','rgba(253,203,110,0.2)','#fdcb6e'),
-                'Patient Picked Up': ('🟠','rgba(225,112,85,0.2)','#e17055'),
-                'Arrived at Destination': ('🟢','rgba(0,184,148,0.2)','#00b894'),
-                'Completed': ('✅','rgba(162,155,254,0.2)','#a29bfe'),
+                'Referred': ('🔵','rgba(2,119,189,0.1)','#0277bd'),
+                'Ambulance Assigned': ('🟡','rgba(245,124,0,0.1)','#f57c00'),
+                'Patient Picked Up': ('🟠','rgba(211,47,47,0.1)','#d32f2f'),
+                'Arrived at Destination': ('🟢','rgba(0,105,92,0.1)','#00695c'),
+                'Completed': ('✅','rgba(94,53,177,0.1)','#5e35b1'),
             }
             rows = ""
             for p in patients:
-                icon, bg, clr = status_badge.get(p.status, ('⚪','rgba(255,255,255,0.05)','#94a3b8'))
+                icon, bg, clr = status_badge.get(p.status, ('⚪','rgba(0,0,0,0.05)','#546e7a'))
                 rows += f"""
-                <tr style='border-bottom:1px solid rgba(255,255,255,0.05);'>
-                    <td style='padding:0.6rem 0.8rem;color:#94a3b8;font-size:0.8rem;font-family:monospace;'>{p.patient_id}</td>
-                    <td style='padding:0.6rem 0.8rem;color:#e2e8f0;font-weight:600;'>{p.name}</td>
-                    <td style='padding:0.6rem 0.8rem;color:#94a3b8;font-size:0.85rem;'>{p.condition}</td>
-                    <td style='padding:0.6rem 0.8rem;color:#64748b;font-size:0.8rem;'>{p.referring_hospital[:30]}…</td>
-                    <td style='padding:0.6rem 0.8rem;color:#64748b;font-size:0.8rem;'>{p.receiving_hospital[:30]}…</td>
+                <tr style='border-bottom:1px solid #e0e0e0;'>
+                    <td style='padding:0.6rem 0.8rem;color:#546e7a;font-size:0.8rem;font-family:monospace;'>{p.patient_id}</td>
+                    <td style='padding:0.6rem 0.8rem;color:#1a237e;font-weight:600;'>{p.name}</td>
+                    <td style='padding:0.6rem 0.8rem;color:#546e7a;font-size:0.85rem;'>{p.condition}</td>
+                    <td style='padding:0.6rem 0.8rem;color:#78909c;font-size:0.8rem;'>{p.referring_hospital[:30]}…</td>
+                    <td style='padding:0.6rem 0.8rem;color:#78909c;font-size:0.8rem;'>{p.receiving_hospital[:30]}…</td>
                     <td style='padding:0.6rem 0.8rem;'>
                         <span style='background:{bg};color:{clr};border:1px solid {clr}50;
                                      border-radius:20px;padding:2px 10px;font-size:0.72rem;font-weight:600;'>
                             {icon} {p.status}
                         </span>
                     </td>
-                    <td style='padding:0.6rem 0.8rem;color:#64748b;font-size:0.78rem;'>{p.referral_time.strftime('%d %b %H:%M')}</td>
+                    <td style='padding:0.6rem 0.8rem;color:#78909c;font-size:0.78rem;'>{p.referral_time.strftime('%d %b %H:%M')}</td>
                 </tr>"""
 
             st.markdown(f"""
-            <div style='background:#0f172a;border:1px solid rgba(255,255,255,0.06);border-radius:14px;overflow:hidden;'>
+            <div style='background:#ffffff;border:1px solid #e0e0e0;border-radius:14px;overflow:hidden;'>
                 <table style='width:100%;border-collapse:collapse;'>
                     <thead>
-                        <tr style='background:rgba(0,0,0,0.3);'>
-                            <th style='padding:0.7rem 0.8rem;color:#64748b;font-size:0.72rem;text-align:left;letter-spacing:1px;text-transform:uppercase;'>ID</th>
-                            <th style='padding:0.7rem 0.8rem;color:#64748b;font-size:0.72rem;text-align:left;letter-spacing:1px;text-transform:uppercase;'>Patient</th>
-                            <th style='padding:0.7rem 0.8rem;color:#64748b;font-size:0.72rem;text-align:left;letter-spacing:1px;text-transform:uppercase;'>Condition</th>
-                            <th style='padding:0.7rem 0.8rem;color:#64748b;font-size:0.72rem;text-align:left;letter-spacing:1px;text-transform:uppercase;'>From</th>
-                            <th style='padding:0.7rem 0.8rem;color:#64748b;font-size:0.72rem;text-align:left;letter-spacing:1px;text-transform:uppercase;'>To</th>
-                            <th style='padding:0.7rem 0.8rem;color:#64748b;font-size:0.72rem;text-align:left;letter-spacing:1px;text-transform:uppercase;'>Status</th>
-                            <th style='padding:0.7rem 0.8rem;color:#64748b;font-size:0.72rem;text-align:left;letter-spacing:1px;text-transform:uppercase;'>Time</th>
+                        <tr style='background:#f5f5f5;'>
+                            <th style='padding:0.7rem 0.8rem;color:#78909c;font-size:0.72rem;text-align:left;letter-spacing:1px;text-transform:uppercase;'>ID</th>
+                            <th style='padding:0.7rem 0.8rem;color:#78909c;font-size:0.72rem;text-align:left;letter-spacing:1px;text-transform:uppercase;'>Patient</th>
+                            <th style='padding:0.7rem 0.8rem;color:#78909c;font-size:0.72rem;text-align:left;letter-spacing:1px;text-transform:uppercase;'>Condition</th>
+                            <th style='padding:0.7rem 0.8rem;color:#78909c;font-size:0.72rem;text-align:left;letter-spacing:1px;text-transform:uppercase;'>From</th>
+                            <th style='padding:0.7rem 0.8rem;color:#78909c;font-size:0.72rem;text-align:left;letter-spacing:1px;text-transform:uppercase;'>To</th>
+                            <th style='padding:0.7rem 0.8rem;color:#78909c;font-size:0.72rem;text-align:left;letter-spacing:1px;text-transform:uppercase;'>Status</th>
+                            <th style='padding:0.7rem 0.8rem;color:#78909c;font-size:0.72rem;text-align:left;letter-spacing:1px;text-transform:uppercase;'>Time</th>
                         </tr>
                     </thead>
                     <tbody>{rows}</tbody>
@@ -1568,8 +1571,8 @@ class ReferralUI:
 
     def display(self):
         st.markdown("""
-        <h1 style='font-size:1.8rem;font-weight:800;color:#e2e8f0;margin-bottom:4px;'>📋 Patient Referral Management</h1>
-        <p style='color:#64748b;font-size:0.9rem;margin-bottom:1.5rem;'>Create, track, and manage inter-facility patient transfers</p>
+        <h1 style='font-size:1.8rem;font-weight:800;color:#1a237e;margin-bottom:4px;'>📋 Patient Referral Management</h1>
+        <p style='color:#546e7a;font-size:0.9rem;margin-bottom:1.5rem;'>Create, track, and manage inter-facility patient transfers</p>
         """, unsafe_allow_html=True)
         tab1, tab2, tab3 = st.tabs(["➕ New Referral", "🔴 Active Transfers", "📁 History"])
         with tab1: self._create_referral_form()
@@ -1590,15 +1593,15 @@ class ReferralUI:
     def _create_referral_form(self):
         user_hospital = st.session_state.user['hospital']
         st.markdown("""
-        <div style='background:linear-gradient(135deg,#0f172a,#1e293b);
-                    border:1px solid rgba(0,184,148,0.2);border-radius:14px;
+        <div style='background:linear-gradient(135deg,#f5f5f5,#fafafa);
+                    border:1px solid #00695c20;border-radius:14px;
                     padding:1.5rem;margin-bottom:1rem;'>
-            <div style='color:#00b894;font-size:0.7rem;letter-spacing:2px;font-weight:700;text-transform:uppercase;'>
+            <div style='color:#00695c;font-size:0.7rem;letter-spacing:2px;font-weight:700;text-transform:uppercase;'>
                 ℹ️ Referral Protocol
             </div>
-            <div style='color:#94a3b8;font-size:0.85rem;margin-top:6px;'>
-                All referring facilities must route patients to either <strong style='color:#e2e8f0;'>JOOTRH</strong> or 
-                <strong style='color:#e2e8f0;'>Kisumu County Referral Hospital</strong>. 
+            <div style='color:#546e7a;font-size:0.85rem;margin-top:6px;'>
+                All referring facilities must route patients to either <strong style='color:#1a237e;'>JOOTRH</strong> or 
+                <strong style='color:#1a237e;'>Kisumu County Referral Hospital</strong>. 
                 AfyaLink auto-assigns the nearest available ambulance with sufficient fuel.
             </div>
         </div>
@@ -1698,7 +1701,7 @@ class ReferralUI:
             st.info("No active transfers at this time.")
             return
 
-        for p in active:
+        for idx, p in enumerate(active):
             amb_info = ""
             if p.assigned_ambulance:
                 af = AmbulanceService(self.db).get_fuel_info(p.assigned_ambulance)
@@ -1729,12 +1732,12 @@ class ReferralUI:
                 st.markdown("**Actions:**")
                 ac1, ac2, ac3, ac4 = st.columns(4)
                 with ac1:
-                    if st.button("Assign Ambulance", key=f"assign_{p.patient_id}", use_container_width=True):
+                    if st.button("Assign Ambulance", key=f"assign_{p.patient_id}_{idx}", use_container_width=True):
                         avail = self.db.get_available_ambulances()
                         if avail:
                             opts = [f"{a.ambulance_id} — {a.driver_name} (Fuel {a.fuel_level:.0f}%)" for a in avail]
-                            sel  = st.selectbox("Select", opts, key=f"amb_sel_{p.patient_id}")
-                            if st.button("Confirm", key=f"confirm_{p.patient_id}", use_container_width=True):
+                            sel  = st.selectbox("Select", opts, key=f"amb_sel_{p.patient_id}_{idx}")
+                            if st.button("Confirm", key=f"confirm_{p.patient_id}_{idx}", use_container_width=True):
                                 if self.svc.assign_ambulance(p.patient_id, sel.split(" — ")[0]):
                                     st.success("Assigned!"); st.rerun()
                         else:
@@ -1742,16 +1745,16 @@ class ReferralUI:
                 with ac2:
                     new_status = st.selectbox("Update Status",
                         ["Referred","Ambulance Dispatched","Patient Picked Up","Transporting to Destination","Arrived at Destination"],
-                        key=f"stat_{p.patient_id}")
-                    if st.button("Apply", key=f"apply_{p.patient_id}", use_container_width=True):
+                        key=f"stat_{p.patient_id}_{idx}")
+                    if st.button("Apply", key=f"apply_{p.patient_id}_{idx}", use_container_width=True):
                         p.status = new_status; self.db.session.commit()
                         st.success("Updated!"); st.rerun()
                 with ac3:
-                    if st.button("🤖 Auto-Assign", key=f"auto_{p.patient_id}", use_container_width=True):
+                    if st.button("🤖 Auto-Assign", key=f"auto_{p.patient_id}_{idx}", use_container_width=True):
                         if self.svc.auto_assign_nearest(p.patient_id): st.rerun()
                 with ac4:
                     if (st.session_state.user['role'] == 'Ambulance Driver' and p.status == 'Ambulance Dispatched'):
-                        if st.button("Mark Picked Up", key=f"pickup_{p.patient_id}", use_container_width=True, type="primary"):
+                        if st.button("Mark Picked Up", key=f"pickup_{p.patient_id}_{idx}", use_container_width=True, type="primary"):
                             if self.svc.mark_picked_up(p.patient_id): st.rerun()
 
     def _history(self):
@@ -1780,8 +1783,8 @@ class TrackingUI:
 
     def display(self):
         st.markdown("""
-        <h1 style='font-size:1.8rem;font-weight:800;color:#e2e8f0;margin-bottom:4px;'>🚑 Live Fleet Tracking</h1>
-        <p style='color:#64748b;font-size:0.9rem;margin-bottom:1.5rem;'>Real-time ambulance positions, fuel levels and cost analytics</p>
+        <h1 style='font-size:1.8rem;font-weight:800;color:#1a237e;margin-bottom:4px;'>🚑 Live Fleet Tracking</h1>
+        <p style='color:#546e7a;font-size:0.9rem;margin-bottom:1.5rem;'>Real-time ambulance positions, fuel levels and cost analytics</p>
         """, unsafe_allow_html=True)
 
         col1, col2 = st.columns([5,1])
@@ -1794,7 +1797,7 @@ class TrackingUI:
 
         if active:
             st.markdown("### 🔴 Active Transfers")
-            for p in active:
+            for idx, p in enumerate(active):
                 ambulance = None
                 if p.assigned_ambulance:
                     ambulance = self.db.session.query(Ambulance).filter(
@@ -1842,11 +1845,11 @@ class TrackingUI:
                                     hover_name='type', zoom=10, height=260,
                                     color_discrete_map={'From':GREEN,'Ambulance':RED,'To':BLUE}
                                 )
-                                fig.update_layout(mapbox_style='carto-darkmatter',
+                                fig.update_layout(mapbox_style='light',
                                                   margin=dict(l=0,r=0,t=0,b=0),
-                                                  paper_bgcolor='rgba(0,0,0,0)',
+                                                  paper_bgcolor='rgba(255,255,255,0)',
                                                   showlegend=True)
-                                st.plotly_chart(fig, use_container_width=True, key=f"map_{p.patient_id}")
+                                st.plotly_chart(fig, use_container_width=True, key=f"map_{p.patient_id}_{idx}")
         else:
             st.info("No active patient transfers currently.")
 
@@ -1886,9 +1889,9 @@ class TrackingUI:
                                 hover_data={'driver':True,'fuel':True,'lat':False,'lon':False},
                                 zoom=9, height=380,
                                 color_discrete_map={'Available':GREEN,'On Transfer':RED,'Maintenance':AMBER,'On Break':PURPLE})
-        fig.update_layout(mapbox_style='carto-darkmatter',
+        fig.update_layout(mapbox_style='light',
                           margin=dict(l=0,r=0,t=0,b=0),
-                          paper_bgcolor='rgba(0,0,0,0)')
+                          paper_bgcolor='rgba(255,255,255,0)')
         st.plotly_chart(fig, use_container_width=True, key="fleet_map")
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1902,8 +1905,8 @@ class CostManagementUI:
 
     def display(self):
         st.markdown("""
-        <h1 style='font-size:1.8rem;font-weight:800;color:#e2e8f0;margin-bottom:4px;'>💰 Cost Intelligence</h1>
-        <p style='color:#64748b;font-size:0.9rem;margin-bottom:1.5rem;'>Fuel analytics, fleet efficiency and budget forecasting</p>
+        <h1 style='font-size:1.8rem;font-weight:800;color:#1a237e;margin-bottom:4px;'>💰 Cost Intelligence</h1>
+        <p style='color:#546e7a;font-size:0.9rem;margin-bottom:1.5rem;'>Fuel analytics, fleet efficiency and budget forecasting</p>
         """, unsafe_allow_html=True)
         tab1, tab2, tab3, tab4 = st.tabs(["Overview","⛽ Fuel","💵 Savings","📊 Budget"])
         with tab1: self._overview()
@@ -1962,7 +1965,7 @@ class CostManagementUI:
         cd = self.analytics.get_cost_analytics()
         fig = go.Figure()
         fig.add_trace(go.Scatter(x=cd['months'], y=cd['monthly_savings'],
-                                  fill='tozeroy', fillcolor='rgba(0,184,148,0.15)',
+                                  fill='tozeroy', fillcolor='rgba(0,105,92,0.15)',
                                   line=dict(color=GREEN,width=2.5), mode='lines+markers'))
         apply_theme(fig, "Monthly Savings Trend (KSh)")
         st.plotly_chart(fig, use_container_width=True, key="savings_trend")
@@ -2018,8 +2021,8 @@ class CommunicationUI:
 
     def display(self):
         st.markdown("""
-        <h1 style='font-size:1.8rem;font-weight:800;color:#e2e8f0;margin-bottom:4px;'>💬 Communication Hub</h1>
-        <p style='color:#64748b;font-size:0.9rem;margin-bottom:1.5rem;'>Secure messaging between facilities, ambulance units and system</p>
+        <h1 style='font-size:1.8rem;font-weight:800;color:#1a237e;margin-bottom:4px;'>💬 Communication Hub</h1>
+        <p style='color:#546e7a;font-size:0.9rem;margin-bottom:1.5rem;'>Secure messaging between facilities, ambulance units and system</p>
         """, unsafe_allow_html=True)
         tab1,tab2,tab3,tab4 = st.tabs(["📨 All Messages","✉️ Compose","📋 Templates","📊 Log Stats"])
         with tab1: self._all_messages()
@@ -2047,23 +2050,23 @@ class CommunicationUI:
         if not comms:
             st.info("No messages found."); return
 
-        for c in comms[:30]:
+        for idx, c in enumerate(comms[:30]):
             if c.sender == 'AfyaLink System':
-                icon, bc, tc = "🤖", "#0f3460", "#00b894"
+                icon, bc, tc = "🤖", "#e8eaf6", "#00695c"
             elif c.sender == 'Driver':
-                icon, bc, tc = "🚑", "#1a3a1a", "#00b894"
+                icon, bc, tc = "🚑", "#e8f5e9", "#00695c"
             else:
-                icon, bc, tc = "👨‍⚕️", "#1e2a3a", "#0984e3"
+                icon, bc, tc = "👨‍⚕️", "#e3f2fd", "#0277bd"
             st.markdown(f"""
             <div style='background:{bc};border-left:3px solid {tc};border-radius:8px;
                         padding:0.8rem 1rem;margin:6px 0;'>
                 <div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;'>
                     <span style='font-weight:700;color:{tc};font-size:0.85rem;'>{icon} {c.sender}</span>
-                    <span style='color:#64748b;font-size:0.75rem;'>{c.timestamp.strftime('%d %b %H:%M')}</span>
+                    <span style='color:#78909c;font-size:0.75rem;'>{c.timestamp.strftime('%d %b %H:%M')}</span>
                 </div>
-                <div style='color:#94a3b8;font-size:0.78rem;margin-bottom:6px;'>→ {c.receiver}</div>
-                <div style='color:#e2e8f0;font-size:0.85rem;white-space:pre-line;'>{c.message}</div>
-                <div style='color:#475569;font-size:0.72rem;margin-top:6px;'>
+                <div style='color:#546e7a;font-size:0.78rem;margin-bottom:6px;'>→ {c.receiver}</div>
+                <div style='color:#1a237e;font-size:0.85rem;white-space:pre-line;'>{c.message}</div>
+                <div style='color:#90a4ae;font-size:0.72rem;margin-top:6px;'>
                     Patient: {c.patient_id or 'N/A'} | Unit: {c.ambulance_id or 'N/A'} | Type: {c.message_type or 'General'}
                 </div>
             </div>
@@ -2159,8 +2162,8 @@ class HandoverUI:
 
     def display(self):
         st.markdown("""
-        <h1 style='font-size:1.8rem;font-weight:800;color:#e2e8f0;margin-bottom:4px;'>📄 Clinical Handover</h1>
-        <p style='color:#64748b;font-size:0.9rem;margin-bottom:1.5rem;'>Standardised handover forms and audit trail</p>
+        <h1 style='font-size:1.8rem;font-weight:800;color:#1a237e;margin-bottom:4px;'>📄 Clinical Handover</h1>
+        <p style='color:#546e7a;font-size:0.9rem;margin-bottom:1.5rem;'>Standardised handover forms and audit trail</p>
         """, unsafe_allow_html=True)
         tab1, tab2 = st.tabs(["📝 Create Handover", "📁 Handover History"])
         with tab1: self._create()
@@ -2263,8 +2266,8 @@ class ReportsUI:
 
     def display(self):
         st.markdown("""
-        <h1 style='font-size:1.8rem;font-weight:800;color:#e2e8f0;margin-bottom:4px;'>📈 Analytics & Reports</h1>
-        <p style='color:#64748b;font-size:0.9rem;margin-bottom:1.5rem;'>Data-driven insights for operational excellence</p>
+        <h1 style='font-size:1.8rem;font-weight:800;color:#1a237e;margin-bottom:4px;'>📈 Analytics & Reports</h1>
+        <p style='color:#546e7a;font-size:0.9rem;margin-bottom:1.5rem;'>Data-driven insights for operational excellence</p>
         """, unsafe_allow_html=True)
         tab1,tab2,tab3,tab4 = st.tabs(["Performance","🏥 Hospitals","🚑 Fleet","📥 Export"])
         with tab1: self._performance()
@@ -2379,8 +2382,8 @@ class DriverUI:
 
     def display(self):
         st.markdown("""
-        <h1 style='font-size:1.8rem;font-weight:800;color:#e2e8f0;margin-bottom:4px;'>🚑 Driver Console</h1>
-        <p style='color:#64748b;font-size:0.9rem;margin-bottom:1.5rem;'>Mission control, navigation and real-time updates</p>
+        <h1 style='font-size:1.8rem;font-weight:800;color:#1a237e;margin-bottom:4px;'>🚑 Driver Console</h1>
+        <p style='color:#546e7a;font-size:0.9rem;margin-bottom:1.5rem;'>Mission control, navigation and real-time updates</p>
         """, unsafe_allow_html=True)
 
         driver_name = st.session_state.user.get('name','Driver')
@@ -2392,25 +2395,25 @@ class DriverUI:
         fuel_clr = GREEN if ambulance.fuel_level>50 else AMBER if ambulance.fuel_level>20 else RED
         st.markdown(f"""
         <div style='display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem;'>
-            <div style='background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;
+            <div style='background:#fafafa;border:1px solid #e0e0e0;border-radius:12px;
                         padding:1rem 1.5rem;flex:1;text-align:center;'>
-                <div style='color:#64748b;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;'>Unit</div>
-                <div style='color:#e2e8f0;font-size:1.3rem;font-weight:800;'>{ambulance.ambulance_id}</div>
+                <div style='color:#78909c;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;'>Unit</div>
+                <div style='color:#1a237e;font-size:1.3rem;font-weight:800;'>{ambulance.ambulance_id}</div>
             </div>
-            <div style='background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;
+            <div style='background:#fafafa;border:1px solid #e0e0e0;border-radius:12px;
                         padding:1rem 1.5rem;flex:1;text-align:center;'>
-                <div style='color:#64748b;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;'>Status</div>
-                <div style='color:#e2e8f0;font-size:1.3rem;font-weight:800;'>{ambulance.status}</div>
+                <div style='color:#78909c;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;'>Status</div>
+                <div style='color:#1a237e;font-size:1.3rem;font-weight:800;'>{ambulance.status}</div>
             </div>
-            <div style='background:#1e293b;border:1px solid {fuel_clr}50;border-radius:12px;
+            <div style='background:#fafafa;border:1px solid {fuel_clr}50;border-radius:12px;
                         padding:1rem 1.5rem;flex:1;text-align:center;border-left:3px solid {fuel_clr};'>
-                <div style='color:#64748b;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;'>Fuel</div>
+                <div style='color:#78909c;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;'>Fuel</div>
                 <div style='color:{fuel_clr};font-size:1.3rem;font-weight:800;'>{ambulance.fuel_level:.1f}%</div>
             </div>
-            <div style='background:#1e293b;border:1px solid rgba(255,255,255,0.1);border-radius:12px;
+            <div style='background:#fafafa;border:1px solid #e0e0e0;border-radius:12px;
                         padding:1rem 1.5rem;flex:2;text-align:center;'>
-                <div style='color:#64748b;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;'>Location</div>
-                <div style='color:#e2e8f0;font-size:1.0rem;font-weight:600;'>{ambulance.current_location or 'Unknown'}</div>
+                <div style='color:#78909c;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;'>Location</div>
+                <div style='color:#1a237e;font-size:1.0rem;font-weight:600;'>{ambulance.current_location or 'Unknown'}</div>
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -2421,11 +2424,11 @@ class DriverUI:
 
         if notifs:
             st.markdown("#### 📨 Recent Assignments & Messages")
-            for n in notifs:
+            for idx, n in enumerate(notifs):
                 with st.expander(f"📬 {n.timestamp.strftime('%d %b %H:%M')} — {n.sender}", expanded=False):
                     st.code(n.message, language=None)
                     if n.message_type=='auto_driver_assignment' and ambulance.status=='Available':
-                        if st.button("✅ Accept Assignment", key=f"accept_{n.id}", use_container_width=True, type="primary"):
+                        if st.button("✅ Accept Assignment", key=f"accept_{n.id}_{idx}", use_container_width=True, type="primary"):
                             ambulance.status='On Transfer'; self.db.session.commit()
                             st.success("Assignment accepted!"); st.rerun()
 
@@ -2499,11 +2502,11 @@ class DriverUI:
                 Patient.status=='Referred', Patient.assigned_ambulance.is_(None)).all()
             if unassigned:
                 st.markdown("**Available Patients (unassigned):**")
-                for p in unassigned:
+                for idx, p in enumerate(unassigned):
                     with st.expander(f"{p.name} — {p.condition}"):
                         st.write(f"From: {p.referring_hospital}")
                         st.write(f"To:   {p.receiving_hospital}")
-                        if st.button("Accept Mission", key=f"accm_{p.patient_id}", use_container_width=True, type="primary"):
+                        if st.button("Accept Mission", key=f"accm_{p.patient_id}_{idx}", use_container_width=True, type="primary"):
                             ambulance.current_patient = p.patient_id
                             ambulance.status          = 'On Transfer'
                             p.assigned_ambulance      = ambulance.ambulance_id
@@ -2532,27 +2535,27 @@ class DriverUI:
 class NationalNetworkUI:
     def display(self):
         st.markdown("""
-        <h1 style='font-size:1.8rem;font-weight:800;color:#e2e8f0;margin-bottom:4px;'>🇰🇪 National Network</h1>
-        <p style='color:#64748b;font-size:0.9rem;margin-bottom:1.5rem;'>AfyaLink's countrywide rollout roadmap — 47 counties, one network</p>
+        <h1 style='font-size:1.8rem;font-weight:800;color:#1a237e;margin-bottom:4px;'>🇰🇪 National Network</h1>
+        <p style='color:#546e7a;font-size:0.9rem;margin-bottom:1.5rem;'>AfyaLink's countrywide rollout roadmap — 47 counties, one network</p>
         """, unsafe_allow_html=True)
 
         st.markdown("""
-        <div style='background:linear-gradient(135deg,#0f2a1f,#0a1a2e);
-                    border:1px solid #00b89430;border-radius:16px;padding:2rem;margin-bottom:2rem;'>
-            <div style='font-size:0.7rem;letter-spacing:3px;color:#00b894;font-weight:700;text-transform:uppercase;margin-bottom:1rem;'>
+        <div style='background:linear-gradient(135deg,#e8f5e9,#e0f2f1);
+                    border:1px solid #00695c30;border-radius:16px;padding:2rem;margin-bottom:2rem;'>
+            <div style='font-size:0.7rem;letter-spacing:3px;color:#00695c;font-weight:700;text-transform:uppercase;margin-bottom:1rem;'>
                 🔗 The AfyaLink Vision
             </div>
-            <div style='font-size:1.1rem;color:#e2e8f0;line-height:1.8;'>
+            <div style='font-size:1.1rem;color:#1a237e;line-height:1.8;'>
                 AfyaLink is Kenya's first <strong>unified, real-time patient referral and ambulance coordination platform</strong>.
                 Beginning with a full-featured pilot in <strong>Kisumu County</strong> — covering 40 facilities and 20 ambulance units —
                 the system is architecturally ready for nationwide deployment across all <strong>47 counties</strong>.
                 The same platform, the same reliability, scaled to every Kenyan patient who needs emergency care.
             </div>
             <div style='display:flex;gap:2rem;margin-top:1.5rem;flex-wrap:wrap;'>
-                <div style='text-align:center;'><div style='font-size:2rem;font-weight:800;color:#00b894;'>6,600+</div><div style='font-size:0.75rem;color:#94a3b8;'>Public Health Facilities</div></div>
-                <div style='text-align:center;'><div style='font-size:2rem;font-weight:800;color:#0984e3;'>47</div><div style='font-size:0.75rem;color:#94a3b8;'>Counties Targeted</div></div>
-                <div style='text-align:center;'><div style='font-size:2rem;font-weight:800;color:#fdcb6e;'>54M+</div><div style='font-size:0.75rem;color:#94a3b8;'>Kenyans Served</div></div>
-                <div style='text-align:center;'><div style='font-size:2rem;font-weight:800;color:#a29bfe;'>&lt;20 min</div><div style='font-size:0.75rem;color:#94a3b8;'>Target Response Time</div></div>
+                <div style='text-align:center;'><div style='font-size:2rem;font-weight:800;color:#00695c;'>6,600+</div><div style='font-size:0.75rem;color:#546e7a;'>Public Health Facilities</div></div>
+                <div style='text-align:center;'><div style='font-size:2rem;font-weight:800;color:#0277bd;'>47</div><div style='font-size:0.75rem;color:#546e7a;'>Counties Targeted</div></div>
+                <div style='text-align:center;'><div style='font-size:2rem;font-weight:800;color:#f57c00;'>54M+</div><div style='font-size:0.75rem;color:#546e7a;'>Kenyans Served</div></div>
+                <div style='text-align:center;'><div style='font-size:2rem;font-weight:800;color:#5e35b1;'>&lt;20 min</div><div style='font-size:0.75rem;color:#546e7a;'>Target Response Time</div></div>
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -2561,13 +2564,13 @@ class NationalNetworkUI:
         phases = [
             ("Phase 1 — Pilot", "2024–2025", "Kisumu County", "✅ LIVE",
              "40 facilities · 20 ambulances · Full feature set · Real-time tracking · Cost analytics",
-             GREEN, "#0f2a1f"),
+             GREEN, "#f5f5f5"),
             ("Phase 2 — Lake Region", "2025–2026", "Homa Bay · Migori · Siaya · Kisii · Nyamira", "🔜 QUEUED",
              "Expanding to Lake Victoria Economic Bloc · Shared ambulance dispatch pool · Inter-county referrals",
-             BLUE, "#0a1a2e"),
+             BLUE, "#f5f5f5"),
             ("Phase 3 — Nationwide", "2026–2027", "All 47 Counties", "📋 PLANNED",
              "Full national integration · Ministry of Health data pipeline · NHIF compatibility · Telemedicine integration",
-             PURPLE, "#1a0a2e"),
+             PURPLE, "#f5f5f5"),
         ]
         for title, period, scope, status, detail, clr, bg in phases:
             st.markdown(f"""
@@ -2575,16 +2578,16 @@ class NationalNetworkUI:
                         border-radius:12px;padding:1.2rem 1.5rem;margin:0.8rem 0;'>
                 <div style='display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;'>
                     <div>
-                        <div style='font-size:1rem;font-weight:800;color:#e2e8f0;'>{title}</div>
+                        <div style='font-size:1rem;font-weight:800;color:#1a237e;'>{title}</div>
                         <div style='font-size:0.8rem;color:{clr};font-weight:600;margin:2px 0;'>{scope}</div>
-                        <div style='font-size:0.8rem;color:#94a3b8;margin-top:4px;'>{detail}</div>
+                        <div style='font-size:0.8rem;color:#546e7a;margin-top:4px;'>{detail}</div>
                     </div>
                     <div style='text-align:right;'>
-                        <div style='background:{clr}25;color:{clr};border:1px solid {clr}60;
+                        <div style='background:{clr}15;color:{clr};border:1px solid {clr}40;
                                     border-radius:20px;padding:3px 14px;font-size:0.75rem;font-weight:700;'>
                             {status}
                         </div>
-                        <div style='color:#64748b;font-size:0.75rem;margin-top:4px;'>{period}</div>
+                        <div style='color:#78909c;font-size:0.75rem;margin-top:4px;'>{period}</div>
                     </div>
                 </div>
             </div>
@@ -2625,11 +2628,11 @@ class NationalNetworkUI:
         for i, (icon, title, desc) in enumerate(caps):
             col = [c1,c2,c3][i%3]
             col.markdown(f"""
-            <div style='background:#1e293b;border:1px solid rgba(255,255,255,0.07);border-radius:12px;
-                        padding:1.2rem;margin-bottom:0.8rem;height:140px;'>
+            <div style='background:#ffffff;border:1px solid #e0e0e0;border-radius:12px;
+                        padding:1.2rem;margin-bottom:0.8rem;height:140px;box-shadow:0 1px 2px rgba(0,0,0,0.05);'>
                 <div style='font-size:1.5rem;margin-bottom:6px;'>{icon}</div>
-                <div style='font-size:0.9rem;font-weight:700;color:#e2e8f0;margin-bottom:4px;'>{title}</div>
-                <div style='font-size:0.78rem;color:#64748b;line-height:1.5;'>{desc}</div>
+                <div style='font-size:0.9rem;font-weight:700;color:#1a237e;margin-bottom:4px;'>{title}</div>
+                <div style='font-size:0.78rem;color:#546e7a;line-height:1.5;'>{desc}</div>
             </div>
             """, unsafe_allow_html=True)
 
@@ -2675,8 +2678,8 @@ class AfyaLinkApp:
         st.markdown("""
         <style>
         .landing-hero {
-            background: linear-gradient(135deg, #0a0f1e 0%, #0d1f14 50%, #0a0f1e 100%);
-            border: 1px solid rgba(0,184,148,0.2);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eaf6 50%, #f5f7fa 100%);
+            border: 1px solid rgba(0,105,92,0.2);
             border-radius: 20px;
             padding: 3rem 2.5rem;
             margin-bottom: 2rem;
@@ -2684,34 +2687,36 @@ class AfyaLinkApp:
             overflow: hidden;
         }
         .demo-card {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            border: 1px solid rgba(0,184,148,0.2);
+            background: linear-gradient(135deg, #ffffff, #fafafa);
+            border: 1px solid rgba(0,105,92,0.2);
             border-radius: 14px;
             padding: 1.2rem;
             transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         .demo-card:hover {
             transform: translateY(-3px);
-            border-color: #00b894;
+            border-color: #00695c;
+            box-shadow: 0 4px 12px rgba(0,105,92,0.1);
         }
         </style>
         <div class='landing-hero'>
-            <div style='font-size:0.75rem;letter-spacing:4px;color:#00b894;font-weight:700;text-transform:uppercase;margin-bottom:1rem;'>
+            <div style='font-size:0.75rem;letter-spacing:4px;color:#00695c;font-weight:700;text-transform:uppercase;margin-bottom:1rem;'>
                 🔗 AfyaLink — Kenya's National Health Referral Network
             </div>
-            <h1 style='font-size:2.8rem;font-weight:900;color:#e2e8f0;margin:0 0 1rem;line-height:1.15;'>
-                Connecting Every Patient<br>to the Right Care, <span style='color:#00b894;'>Right Now</span>
+            <h1 style='font-size:2.8rem;font-weight:900;color:#1a237e;margin:0 0 1rem;line-height:1.15;'>
+                Connecting Every Patient<br>to the Right Care, <span style='color:#00695c;'>Right Now</span>
             </h1>
-            <p style='font-size:1.05rem;color:#94a3b8;max-width:640px;line-height:1.7;margin-bottom:2rem;'>
+            <p style='font-size:1.05rem;color:#546e7a;max-width:640px;line-height:1.7;margin-bottom:2rem;'>
                 AfyaLink is a real-time patient referral and ambulance coordination platform built for Kenya's 
                 public health system. Piloting in Kisumu County with 40 facilities and 20 ambulance units — 
                 designed to scale to all 47 counties and 54 million Kenyans.
             </p>
             <div style='display:flex;gap:2rem;flex-wrap:wrap;'>
-                <div><span style='font-size:1.8rem;font-weight:800;color:#00b894;'>40</span><br><span style='font-size:0.8rem;color:#64748b;'>Facilities Online</span></div>
-                <div><span style='font-size:1.8rem;font-weight:800;color:#0984e3;'>20</span><br><span style='font-size:0.8rem;color:#64748b;'>Ambulance Units</span></div>
-                <div><span style='font-size:1.8rem;font-weight:800;color:#fdcb6e;'>47</span><br><span style='font-size:0.8rem;color:#64748b;'>Counties Ready</span></div>
-                <div><span style='font-size:1.8rem;font-weight:800;color:#a29bfe;'>&lt;20 min</span><br><span style='font-size:0.8rem;color:#64748b;'>Target Response</span></div>
+                <div><span style='font-size:1.8rem;font-weight:800;color:#00695c;'>40</span><br><span style='font-size:0.8rem;color:#546e7a;'>Facilities Online</span></div>
+                <div><span style='font-size:1.8rem;font-weight:800;color:#0277bd;'>20</span><br><span style='font-size:0.8rem;color:#546e7a;'>Ambulance Units</span></div>
+                <div><span style='font-size:1.8rem;font-weight:800;color:#f57c00;'>47</span><br><span style='font-size:0.8rem;color:#546e7a;'>Counties Ready</span></div>
+                <div><span style='font-size:1.8rem;font-weight:800;color:#5e35b1;'>&lt;20 min</span><br><span style='font-size:0.8rem;color:#546e7a;'>Target Response</span></div>
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -2726,9 +2731,9 @@ class AfyaLinkApp:
             <div class='demo-card'>
                 <div style='display:flex;align-items:center;gap:0.8rem;margin-bottom:1rem;'>
                     <div style='font-size:2rem;'>⚙️</div>
-                    <div><strong style='color:#e2e8f0;'>Admin Account</strong><br><span style='color:#64748b;font-size:0.8rem;'>Full system access</span></div>
+                    <div><strong style='color:#1a237e;'>Admin Account</strong><br><span style='color:#546e7a;font-size:0.8rem;'>Full system access</span></div>
                 </div>
-                <div style='background:#0f172a;border-radius:8px;padding:0.5rem;font-family:monospace;color:#00b894;'>
+                <div style='background:#f5f5f5;border-radius:8px;padding:0.5rem;font-family:monospace;color:#00695c;'>
                     admin / admin123
                 </div>
             </div>
@@ -2738,9 +2743,9 @@ class AfyaLinkApp:
             <div class='demo-card' style='margin-top:1rem;'>
                 <div style='display:flex;align-items:center;gap:0.8rem;margin-bottom:1rem;'>
                     <div style='font-size:2rem;'>🚑</div>
-                    <div><strong style='color:#e2e8f0;'>Driver Account</strong><br><span style='color:#64748b;font-size:0.8rem;'>Mission console access</span></div>
+                    <div><strong style='color:#1a237e;'>Driver Account</strong><br><span style='color:#546e7a;font-size:0.8rem;'>Mission console access</span></div>
                 </div>
-                <div style='background:#0f172a;border-radius:8px;padding:0.5rem;font-family:monospace;color:#00b894;'>
+                <div style='background:#f5f5f5;border-radius:8px;padding:0.5rem;font-family:monospace;color:#00695c;'>
                     driver / driver123
                 </div>
             </div>
@@ -2751,21 +2756,21 @@ class AfyaLinkApp:
             <div class='demo-card'>
                 <div style='display:flex;align-items:center;gap:0.8rem;margin-bottom:1rem;'>
                     <div style='font-size:2rem;'>🏥</div>
-                    <div><strong style='color:#e2e8f0;'>Hospital Staff</strong><br><span style='color:#64748b;font-size:0.8rem;'>Referral management</span></div>
+                    <div><strong style='color:#1a237e;'>Hospital Staff</strong><br><span style='color:#546e7a;font-size:0.8rem;'>Referral management</span></div>
                 </div>
-                <div style='background:#0f172a;border-radius:8px;padding:0.5rem;font-family:monospace;color:#00b894;'>
+                <div style='background:#f5f5f5;border-radius:8px;padding:0.5rem;font-family:monospace;color:#00695c;'>
                     hospital_staff / staff123
                 </div>
             </div>
             """, unsafe_allow_html=True)
             
             st.markdown("""
-            <div class='demo-card' style='margin-top:1rem;background:linear-gradient(135deg,#0a1f1a,#0a1a2e);border-color:#fdcb6e;'>
+            <div class='demo-card' style='margin-top:1rem;background:linear-gradient(135deg,#fff8e1,#ffecb3);border-color:#f57c00;'>
                 <div style='display:flex;align-items:center;gap:0.8rem;margin-bottom:1rem;'>
                     <div style='font-size:2rem;'>💼</div>
-                    <div><strong style='color:#fdcb6e;'>Investor Mode</strong><br><span style='color:#64748b;font-size:0.8rem;'>Professional presentation</span></div>
+                    <div><strong style='color:#e65100;'>Investor Mode</strong><br><span style='color:#546e7a;font-size:0.8rem;'>Professional presentation</span></div>
                 </div>
-                <div style='background:#0f172a;border-radius:8px;padding:0.5rem;font-family:monospace;color:#fdcb6e;'>
+                <div style='background:#f5f5f5;border-radius:8px;padding:0.5rem;font-family:monospace;color:#e65100;'>
                     investor / investor2024
                 </div>
             </div>
@@ -2773,9 +2778,9 @@ class AfyaLinkApp:
 
         st.markdown("---")
         st.markdown("""
-        <div style='text-align:center;color:#475569;font-size:0.8rem;'>
+        <div style='text-align:center;color:#78909c;font-size:0.8rem;'>
             AfyaLink Pilot System · Kisumu County · Built for Kenya's Universal Health Coverage Goals<br>
-            <span style='color:#00b894;'>Secure · Scalable · Patient-First</span>
+            <span style='color:#00695c;'>Secure · Scalable · Patient-First</span>
         </div>
         """, unsafe_allow_html=True)
 
@@ -2789,11 +2794,11 @@ class AfyaLinkApp:
             self._staff_tabs()
 
         st.markdown("""
-        <div style='text-align:center;color:#334155;font-size:0.75rem;margin-top:3rem;padding:1rem;
-                    border-top:1px solid rgba(255,255,255,0.05);'>
+        <div style='text-align:center;color:#90a4ae;font-size:0.75rem;margin-top:3rem;padding:1rem;
+                    border-top:1px solid #e0e0e0;'>
             🔗 <strong>AfyaLink</strong> — Kenya National Referral Network &nbsp;|&nbsp; 
             Kisumu County Pilot &nbsp;|&nbsp; 
-            <span style='color:#00b894;'>Secure · Real-time · Scalable</span>
+            <span style='color:#00695c;'>Secure · Real-time · Scalable</span>
         </div>
         """, unsafe_allow_html=True)
 
@@ -2822,7 +2827,7 @@ class AfyaLinkApp:
     def _users(self):
         if not self.auth.require_auth(['Admin']): return
         st.markdown("""
-        <h1 style='font-size:1.8rem;font-weight:800;color:#e2e8f0;margin-bottom:1.5rem;'>👥 User Management</h1>
+        <h1 style='font-size:1.8rem;font-weight:800;color:#1a237e;margin-bottom:1.5rem;'>👥 User Management</h1>
         """, unsafe_allow_html=True)
         c1,c2 = st.columns(2)
         with c1:
@@ -2869,44 +2874,45 @@ if __name__ == "__main__":
         font-family: 'DM Sans', sans-serif;
     }
     .stApp {
-        background: linear-gradient(160deg, #060b18 0%, #0a1628 40%, #080f1a 100%);
+        background: linear-gradient(160deg, #f0f4f8 0%, #e8edf2 40%, #f5f7fa 100%);
         min-height: 100vh;
     }
     .stSidebar {
-        background: linear-gradient(180deg, #060b18 0%, #0a1225 100%) !important;
-        border-right: 1px solid rgba(0,184,148,0.12) !important;
+        background: linear-gradient(180deg, #f5f7fa 0%, #e8eaf6 100%) !important;
+        border-right: 1px solid #e0e0e0 !important;
     }
     .stTabs [data-baseweb="tab-list"] {
-        background: rgba(15,23,42,0.6);
+        background: rgba(255,255,255,0.9);
         border-radius: 10px;
         padding: 4px;
-        border: 1px solid rgba(255,255,255,0.06);
+        border: 1px solid #e0e0e0;
     }
     .stTabs [data-baseweb="tab"] {
         border-radius: 8px;
-        color: #64748b;
+        color: #546e7a;
         font-weight: 600;
         font-size: 0.85rem;
     }
     .stTabs [aria-selected="true"] {
-        background: rgba(0,184,148,0.15) !important;
-        color: #00b894 !important;
+        background: rgba(0,105,92,0.1) !important;
+        color: #00695c !important;
     }
     div[data-testid="metric-container"] {
-        background: linear-gradient(135deg, #0f172a, #1e293b);
-        border: 1px solid rgba(255,255,255,0.06);
+        background: linear-gradient(135deg, #ffffff, #fafafa);
+        border: 1px solid #e0e0e0;
         border-radius: 12px;
         padding: 1rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
     div[data-testid="metric-container"] label {
-        color: #64748b !important;
+        color: #78909c !important;
         font-size: 0.75rem !important;
         font-weight: 700 !important;
         letter-spacing: 0.5px;
         text-transform: uppercase;
     }
     div[data-testid="metric-container"] div[data-testid="metric-value"] {
-        color: #e2e8f0 !important;
+        color: #1a237e !important;
         font-size: 1.5rem !important;
         font-weight: 800 !important;
     }
@@ -2917,51 +2923,51 @@ if __name__ == "__main__":
         transition: all 0.2s ease !important;
     }
     .stButton > button[kind="primary"] {
-        background: linear-gradient(135deg, #00b894, #00cec9) !important;
+        background: linear-gradient(135deg, #00695c, #00838f) !important;
         border: none !important;
-        color: #0a0f1e !important;
+        color: #ffffff !important;
     }
     .stButton > button[kind="primary"]:hover {
         transform: translateY(-1px);
-        box-shadow: 0 4px 20px rgba(0,184,148,0.4) !important;
+        box-shadow: 0 4px 12px rgba(0,105,92,0.3) !important;
     }
     .stTextInput > div > div > input,
     .stTextArea > div > div > textarea,
     .stSelectbox > div > div {
-        background: #1e293b !important;
-        border: 1px solid rgba(255,255,255,0.08) !important;
+        background: #ffffff !important;
+        border: 1px solid #e0e0e0 !important;
         border-radius: 8px !important;
-        color: #e2e8f0 !important;
+        color: #1a237e !important;
         font-family: 'DM Sans', sans-serif !important;
     }
     .stTextInput > div > div > input:focus,
     .stTextArea > div > div > textarea:focus {
-        border-color: #00b894 !important;
-        box-shadow: 0 0 0 2px rgba(0,184,148,0.2) !important;
+        border-color: #00695c !important;
+        box-shadow: 0 0 0 2px rgba(0,105,92,0.1) !important;
     }
     .stForm {
-        background: linear-gradient(135deg, #0f172a, #1a2744);
-        border: 1px solid rgba(255,255,255,0.06);
+        background: linear-gradient(135deg, #ffffff, #fafafa);
+        border: 1px solid #e0e0e0;
         border-radius: 14px;
         padding: 1.5rem;
     }
     .stExpander {
-        background: #0f172a !important;
-        border: 1px solid rgba(255,255,255,0.06) !important;
+        background: #ffffff !important;
+        border: 1px solid #e0e0e0 !important;
         border-radius: 10px !important;
     }
     .stDataFrame {
         border-radius: 10px !important;
         overflow: hidden;
     }
-    h1, h2, h3, h4, h5 { color: #e2e8f0 !important; font-family: 'DM Sans', sans-serif !important; }
+    h1, h2, h3, h4, h5 { color: #1a237e !important; font-family: 'DM Sans', sans-serif !important; }
     p, li, span { font-family: 'DM Sans', sans-serif !important; }
     code { font-family: 'DM Mono', monospace !important; }
     .stAlert { border-radius: 10px !important; }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #0f172a; }
-    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #00b894; }
+    ::-webkit-scrollbar-track { background: #e0e0e0; }
+    ::-webkit-scrollbar-thumb { background: #b0bec5; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00695c; }
     
     /* Animation classes */
     @keyframes fadeInUp {
