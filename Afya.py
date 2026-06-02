@@ -1239,21 +1239,39 @@ def initialize_sample_data(db):
             )
             db.session.add(a)
         
-        # Add demo patients for presentation
+        # Only add demo patients if they don't exist and use VALID hospital names
         demo_patients = [
-            ("AFL001", "Akinyi Odhiambo", 45, "Acute Myocardial Infarction", "Lumumba Sub-County Hospital", "JOOTRH"),
-            ("AFL002", "Otieno Omondi", 32, "Severe Trauma", "Ahero Sub-County Hospital", "Kisumu County Referral Hospital"),
-            ("AFL003", "Wanjiku Mwangi", 28, "Obstetric Emergency", "Kombewa Sub-County Hospital", "JOOTRH"),
-            ("AFL004", "Kamau Kimani", 67, "Stroke", "Nyando District Hospital", "Kisumu County Referral Hospital"),
-            ("AFL005", "Achieng Otieno", 19, "Respiratory Distress", "Masogo Sub-County Hospital", "JOOTRH"),
+            ("AFL001", "Akinyi Odhiambo", 45, "Acute Myocardial Infarction", 
+             "Lumumba Sub-County Hospital", "Jaramogi Oginga Odinga Teaching & Referral Hospital (JOOTRH)"),
+            ("AFL002", "Otieno Omondi", 32, "Severe Trauma", 
+             "Ahero Sub-County Hospital", "Kisumu County Referral Hospital"),
+            ("AFL003", "Wanjiku Mwangi", 28, "Obstetric Emergency", 
+             "Kombewa Sub-County Hospital", "Jaramogi Oginga Odinga Teaching & Referral Hospital (JOOTRH)"),
+            ("AFL004", "Kamau Kimani", 67, "Stroke", 
+             "Nyando District Hospital", "Kisumu County Referral Hospital"),
+            ("AFL005", "Achieng Otieno", 19, "Respiratory Distress", 
+             "Masogo Sub-County Hospital", "Jaramogi Oginga Odinga Teaching & Referral Hospital (JOOTRH)"),
         ]
         
         for pid, name, age, condition, from_hosp, to_hosp in demo_patients:
+            # Verify hospitals exist in dataframe
+            if from_hosp not in hospitals_df['facility_name'].values:
+                print(f"Warning: {from_hosp} not found in hospitals_df, skipping")
+                continue
+            if to_hosp not in hospitals_df['facility_name'].values:
+                print(f"Warning: {to_hosp} not found in hospitals_df, skipping")
+                continue
+                
             fh = hospitals_df[hospitals_df['facility_name'] == from_hosp].iloc[0]
             th = hospitals_df[hospitals_df['facility_name'] == to_hosp].iloc[0]
-            dist = db.calculate_distance(float(fh['latitude']), float(fh['longitude']), 
-                                         float(th['latitude']), float(th['longitude']))
             
+            # Calculate distance
+            dist = db.calculate_distance(
+                float(fh['latitude']), float(fh['longitude']), 
+                float(th['latitude']), float(th['latitude'])
+            )
+            
+            # Check if patient already exists
             if db.session.query(Patient).filter(Patient.patient_id == pid).count() == 0:
                 p = Patient(
                     patient_id=pid,
