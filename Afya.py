@@ -2037,7 +2037,7 @@ class CommunicationUI:
         with c2:
             search = st.text_input("🔍 Search messages", placeholder="Patient ID, keyword...")
         with c3:
-            if st.button("🔄 Refresh", use_container_width=True): st.rerun()
+            if st.button("🔄 Refresh", key="refresh_messages", use_container_width=True): st.rerun()
 
         comms = self.db.session.query(Communication).order_by(Communication.timestamp.desc()).all()
         if ftype == "🤖 System Auto": comms = [c for c in comms if c.sender=='AfyaLink System']
