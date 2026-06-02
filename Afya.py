@@ -1,6 +1,7 @@
 import streamlit as st
 import hashlib
-import sqlalchemy as db
+import sqlalchemy
+from sqlalchemy import create_engine
 from sqlalchemy import create_engine, Column, String, Integer, DateTime, JSON, Text, Boolean, Float
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
