@@ -1013,7 +1013,7 @@ class ReferralService:
             st.error(f"Error assigning ambulance: {e}")
         return False
         
-    def assign_ambulance_and_simulate(self, patient_id, ambulance_id):
+   def assign_ambulance_and_simulate(self, patient_id, ambulance_id):
     """Assign ambulance and start location simulation immediately"""
     try:
         patient = self.db.get_patient_by_id(patient_id)
