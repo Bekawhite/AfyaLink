@@ -1012,6 +1012,66 @@ class ReferralService:
         except Exception as e:
             st.error(f"Error assigning ambulance: {e}")
         return False
+        
+     def assign_ambulance_and_simulate(self, patient_id, ambulance_id):
+    """Assign ambulance and start location simulation immediately"""
+    try:
+        patient = self.db.get_patient_by_id(patient_id)
+        ambulance = self.db.session.query(Ambulance).filter(
+            Ambulance.ambulance_id == ambulance_id
+        ).first()
+        
+        if patient and ambulance:
+            # Assign ambulance
+            start_time = datetime.utcnow()
+            patient.assigned_ambulance = ambulance_id
+            patient.status = 'Ambulance Assigned'
+            patient.response_time_seconds = int((start_time - patient.referral_time).total_seconds())
+            
+            ambulance.status = 'On Transfer'
+            ambulance.current_patient = patient_id
+            ambulance.destination = patient.receiving_hospital
+            
+            self.db.session.commit()
+            
+            # Send notifications
+            self.notif.send_automatic_pickup_notification_to_driver(patient, ambulance)
+            self.db.add_system_metric('ambulance_assigned', 1)
+            
+            # Start simulation immediately
+            simulator = LocationSimulator(self.db)
+            simulator.start_simulation_background(
+                ambulance_id,
+                patient.patient_id,
+                patient.referring_hospital_lat,
+                patient.referring_hospital_lng,
+                patient.receiving_hospital_lat,
+                patient.receiving_hospital_lng
+            )
+            
+            # Calculate ETA for display
+            distance = self.db.calculate_distance(
+                patient.referring_hospital_lat,
+                patient.referring_hospital_lng,
+                patient.receiving_hospital_lat,
+                patient.receiving_hospital_lng
+            )
+            estimated_minutes = int(distance / 0.8)  # 48 km/h average
+            
+            st.success(f"""
+            ✅ **Ambulance {ambulance_id} assigned to {patient.name}**
+            📍 **From:** {patient.referring_hospital}
+            🏥 **To:** {patient.receiving_hospital}
+            📏 **Distance:** {distance:.1f} km
+            ⏱️ **ETA:** ~{estimated_minutes} minutes
+            🚑 **Live tracking activated!** Go to Tracking tab to see movement.
+            """)
+            
+            return True
+            
+    except Exception as e:
+        st.error(f"Error: {e}")
+    return False  
 
     def auto_assign_nearest(self, patient_id):
         patient = self.db.get_patient_by_id(patient_id)
@@ -1064,6 +1124,7 @@ class ReferralService:
         self.db.add_system_metric('mission_completed', 1)
         st.success("✅ Mission complete! Patient successfully delivered.")
         st.balloons()
+        
 
 # ─────────────────────────────────────────────────────────────────────────────
 # AMBULANCE SERVICE
