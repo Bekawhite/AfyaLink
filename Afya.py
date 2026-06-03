@@ -1097,10 +1097,12 @@ class AmbulanceService:
 # ─────────────────────────────────────────────────────────────────────────────
 # LOCATION SIMULATOR
 # ─────────────────────────────────────────────────────────────────────────────
+
 class LocationSimulator:
     def __init__(self, db):
         self.db      = db
         self.running = False
+        self.simulation_thread = None
 
     def start_simulation(self, ambulance_id, patient_id, s_lat, s_lng, e_lat, e_lng):
         self.running = True
@@ -1111,15 +1113,59 @@ class LocationSimulator:
             if not self.running: break
             lat = s_lat + (e_lat - s_lat) / steps * step
             lng = s_lng + (e_lng - s_lng) / steps * step
-            svc.update_location(ambulance_id, lat, lng, f"En route — {step}/{steps}", patient_id)
+            progress_pct = int((step / steps) * 100)
+            svc.update_location(ambulance_id, lat, lng, f"En route — {progress_pct}% to destination", patient_id)
             if step > 0:
                 self.db.update_ambulance_fuel(ambulance_id, dist / steps)
-            time.sleep(5)
+            time.sleep(3)  # Changed from 5 to 3 seconds for smoother movement
         if self.running:
             a = self.db.session.query(Ambulance).filter(Ambulance.ambulance_id==ambulance_id).first()
             if a:
-                a.status = 'Available'; a.current_patient = None
+                a.status = 'Available'
+                a.current_patient = None
                 self.db.session.commit()
+                # Update patient status to arrived
+                patient = self.db.get_patient_by_id(patient_id)
+                if patient:
+                    patient.status = 'Arrived at Destination'
+                    self.db.session.commit()
+                    st.success(f"✅ Patient {patient.name} has arrived at destination!")
+                    st.balloons()
+
+    def start_simulation_background(self, ambulance_id, patient_id, s_lat, s_lng, e_lat, e_lng):
+        """Start simulation in background thread"""
+        import threading
+        
+        def simulate():
+            svc = AmbulanceService(self.db)
+            dist = self.db.calculate_distance(s_lat, s_lng, e_lat, e_lng)
+            steps = 20
+            for step in range(steps + 1):
+                if not self.running:
+                    break
+                lat = s_lat + (e_lat - s_lat) / steps * step
+                lng = s_lng + (e_lng - s_lng) / steps * step
+                progress_pct = int((step / steps) * 100)
+                svc.update_location(ambulance_id, lat, lng, f"🚑 En route — {progress_pct}% to destination", patient_id)
+                if step > 0:
+                    self.db.update_ambulance_fuel(ambulance_id, dist / steps)
+                time.sleep(3)
+            
+            if self.running:
+                a = self.db.session.query(Ambulance).filter(Ambulance.ambulance_id==ambulance_id).first()
+                if a:
+                    a.status = 'Available'
+                    a.current_patient = None
+                    self.db.session.commit()
+                    patient = self.db.get_patient_by_id(patient_id)
+                    if patient:
+                        patient.status = 'Arrived at Destination'
+                        self.db.session.commit()
+        
+        self.running = True
+        self.simulation_thread = threading.Thread(target=simulate, daemon=True)
+        self.simulation_thread.start()
+        return True
 
     def stop(self):
         self.running = False
