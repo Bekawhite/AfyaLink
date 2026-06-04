@@ -1994,7 +1994,7 @@ class TrackingUI:
                                 hover_data={'driver':True,'fuel':True,'lat':False,'lon':False},
                                 zoom=9, height=380,
                                 color_discrete_map={'Available':GREEN,'On Transfer':RED,'Maintenance':AMBER,'On Break':PURPLE})
-        fig.update_layout(mapbox_style='carto-darkmatter'
+        fig.update_layout(mapbox_style='carto-darkmatter',
                           margin=dict(l=0,r=0,t=0,b=0),
                           paper_bgcolor='rgba(245,247,250,0.8)')
         st.plotly_chart(fig, use_container_width=True, key="fleet_map")
